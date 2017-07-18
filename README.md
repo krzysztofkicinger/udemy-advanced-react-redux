@@ -1,1 +1,1 @@
-# udemy-modern-react-with-redux
+# udemy-advanced-react-redux
