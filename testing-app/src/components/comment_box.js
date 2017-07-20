@@ -2,11 +2,15 @@
  * Created by krzysztofk on 2017-07-18.
  */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PostComment from '../actions/index';
 
 const bindMethods = Symbol();
 const initializeState = Symbol();
+const postComment = Symbol();
 
-export default class CommentBox extends Component {
+class CommentBox extends Component {
 
     constructor(props) {
         super(props);
@@ -20,6 +24,7 @@ export default class CommentBox extends Component {
 
     onSubmit(event) {
         event.preventDefault();
+        this[postComment](this.state.comment);
         this.setState({ comment: '' });
     }
 
@@ -30,7 +35,7 @@ export default class CommentBox extends Component {
                     <h3>Add Comment</h3>
                     <textarea style={{ width: '100%' }} value={this.state.comment} onChange={this.onChange}/>
                 </div>
-                <div className="pull-xs-right">
+                <div>
                     <button type="submit" className="btn btn-primary">Submit Comment</button>
                 </div>
             </form>
@@ -48,4 +53,15 @@ export default class CommentBox extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    [postComment](comment) {
+        this.props.postComment(comment);
+    }
 }
+
+function mapDispatchToState(dispatch) {
+    return bindActionCreators( {
+        postComment: PostComment
+    }, dispatch);
+}
+
+export default connect(null, mapDispatchToState)(CommentBox);
