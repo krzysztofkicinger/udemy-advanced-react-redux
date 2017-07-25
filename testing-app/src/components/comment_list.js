@@ -13,7 +13,6 @@ class CommentList extends Component {
     }
 
     render() {
-        console.log("RENDER IN COMMENT LIST");
         return (
             <div>
                 <ul className="list-group comment-list">
