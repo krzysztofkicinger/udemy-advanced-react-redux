@@ -7,8 +7,8 @@ import _ from 'lodash';
 export default function reduceCommentsAction(state = [], action) {
     switch(action.type) {
         case POST_COMMENT:
-            return _.union(state, [ action.payload ]);
-        default:
-            return state;
+            // return _.union(state, [ action.payload ]);
+            return [ ...state, action.payload ];
     }
+    return state;
 }
