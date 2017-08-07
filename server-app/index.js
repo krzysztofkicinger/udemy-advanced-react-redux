@@ -15,7 +15,7 @@ app.use(bodyParser.json({type: '*/*'}));        // Parses incoming requests to J
 router(app);
 
 // App Setup - Connecting to MongoDB (creates a database called auth)
-mongoose.createConnection('mongodb://localhost:auth/auth');
+mongoose.connect('mongodb://localhost/auth');
 
 
 // Server Setup

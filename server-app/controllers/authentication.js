@@ -6,14 +6,48 @@ exports.signup = function(request, response, next) {
     const email = request.body.email;
     const password = request.body.password;
 
-    // If a user with email exits, return an error
+    console.log('Email: ' + email);
+    console.log('Password: ' + password);
+
     User.findOne({
         email: email
     }, function(error, existingUser) {
 
+
+        console.log(error + " " + existingUser);
+
+        // If internal error has occurred
+        if(error) {
+            return next(error);
+        }
+
+        // If a user with email exits, return an error
+        if(existingUser) {
+            return response.status(422)
+                .send({
+                    error: 'Email is in use'
+                })
+        }
+
+        // If a user with email does not exist, create and save user record
+        const user = new User({
+            email: email,
+            password: password
+        });
+        user.save(function(error) {
+
+            console.log("Saving...", error);
+
+            if(error) {
+                return next(error);
+            }
+
+            response.status(201).json(user);
+        })
+
     });
 
-    // If a user with email does not exist, create and save user record
+
 
 
     // Respond to request indicating the user was created
