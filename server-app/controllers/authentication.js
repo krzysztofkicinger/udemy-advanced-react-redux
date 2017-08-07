@@ -42,7 +42,9 @@ exports.signup = function(request, response, next) {
                 return next(error);
             }
 
-            response.status(201).json(user);
+            response.status(201).json({
+                success: true
+            });
         })
 
     });
