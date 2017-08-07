@@ -6,8 +6,13 @@ exports.signup = function(request, response, next) {
     const email = request.body.email;
     const password = request.body.password;
 
-    console.log('Email: ' + email);
-    console.log('Password: ' + password);
+    if(!email || !password) {
+        return response
+            .status(422)
+            .send( {
+                error: "You must provide and email and password"
+            })
+    }
 
     User.findOne({
         email: email
