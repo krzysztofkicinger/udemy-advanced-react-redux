@@ -6,6 +6,11 @@ const requireAuth = passport.authenticate('jwt', {
     session: false
 });
 
+const requireSignIn = passport.authenticate('local', {
+    session: false
+});
+
+
 module.exports = function(app) {
 
     app.get('/', requireAuth, function(request, response) {
@@ -15,6 +20,7 @@ module.exports = function(app) {
     });
 
     // next - for error handling
-    app.post('/', Authentication.signup);
+    app.post('/signin', requireSignIn, Authentication.signin);
+    app.post('/signup', Authentication.signup);
 
 };
