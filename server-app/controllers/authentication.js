@@ -15,12 +15,17 @@ function tokenForUser(user) {
     }, config.secret);
 }
 
+// Uses done(null, user) callback from the localLogin strategy
+// The user is the returned object and obtains the id required in the tokenForUser method
+// User can be accessed using request.user
 exports.signin = function(request, response, next) {
 
     // User has already had their email and password authenticated
     // We just need to give the a token
 
-
+    response.send({
+        token: tokenForUser(request.user)
+    })
 };
 
 exports.signup = function(request, response, next) {
