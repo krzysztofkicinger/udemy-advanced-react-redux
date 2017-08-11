@@ -4,16 +4,29 @@ import { connect } from 'react-redux';
 
 class SignIn extends Component {
 
+    onSignInAction = ( { email, password }) => {
+        console.log(`Sign in action: ${email}, ${password}`)
+    };
+
     render = () => {
+
+        const {
+            handleSubmit,
+            fields : {
+                email,
+                password
+            }
+        } = this.props;
+
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onSignInAction)}>
                 <fieldset className="form-group">
                     <label>Email:</label>
-                    <input className="form-control" />
+                    <input { ...email } className="form-control" />
                 </fieldset>
                 <fieldset className="form-group">
                     <label>Password:</label>
-                    <input className="form-control" />
+                    <input { ...password } className="form-control" />
                 </fieldset>
                 <button action="submit" className="btn btn-primary">Sign In</button>
             </form>
