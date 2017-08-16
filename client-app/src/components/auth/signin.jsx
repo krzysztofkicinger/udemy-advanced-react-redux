@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/types';
+import * as actions from '../../actions/index';
 
 class SignIn extends Component {
 
     onSignInAction = ( { email, password }) => {
+        console.log(this.props);
         console.log(`Sign in action: ${email}, ${password}`);
         this.props.signInUser({ email, password });
     };

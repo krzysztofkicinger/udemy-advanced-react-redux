@@ -15,11 +15,11 @@ export function signInUser({ email, password }) {
     // If the request is bad...
     //  - Show an error to the user
 
-    return dispatch =>{
-        dispatch({
-            type: SIGN_IN,
-            payload: { email, password }
-        });
+    return dispatch => {
+        // dispatch({
+        //     type: SIGN_IN,
+        //     payload: { email, password }
+        // });
     }
 
 }
