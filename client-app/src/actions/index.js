@@ -19,16 +19,12 @@ export function signInUser({ email, password }) {
     return dispatch =>
         request
             .then((response) => {
-                console.log(response);
-                dispatch({
-                    type: SIGN_IN,
-                    payload: response.data.token
-                });
+                localStorage.setItem('token', response.data.token);
+                dispatch({ type: SIGN_IN });
                 browserHistory.push('/feature');
             })
-            .catch((error, response) => {
+            .catch((error) => {
                 console.log("ERROR OCCURRED: ", error);
-                console.log("RESPONSE: ", response);
             });
 
 }
