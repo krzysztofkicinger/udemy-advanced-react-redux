@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import secured from "../hoc/secured";
 
 class Feature extends Component {
 
@@ -10,4 +11,4 @@ class Feature extends Component {
 
 }
 
-export default Feature;
+export default secured(Feature);
