@@ -1,13 +1,13 @@
-import { SIGN_IN, SIGN_OUT } from "../actions/types";
+import { SIGN_IN, SIGN_OUT, AUTHENTICATION_ERROR } from "../actions/types";
 
 export default function(state = {}, action) {
     switch(action.type) {
         case SIGN_IN:
-            console.log("Sign In reducer");
             return { ...state, authenticated: true };
         case SIGN_OUT:
-            console.log("Sign Out reducer");
             return { ...state, authenticated: false };
+        case AUTHENTICATION_ERROR:
+            return { ...state, message: action.payload }
     }
     return state;
 }

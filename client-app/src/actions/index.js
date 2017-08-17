@@ -1,4 +1,4 @@
-import { SIGN_IN } from './types';
+import { SIGN_IN, AUTHENTICATION_ERROR } from './types';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -24,7 +24,14 @@ export function signInUser({ email, password }) {
                 browserHistory.push('/feature');
             })
             .catch((error) => {
-                console.log("ERROR OCCURRED: ", error);
+                dispatch(authError('Bad login info'));
             });
 
+}
+
+export function authError(error) {
+    return {
+        type: AUTHENTICATION_ERROR,
+        payload: error
+    }
 }
