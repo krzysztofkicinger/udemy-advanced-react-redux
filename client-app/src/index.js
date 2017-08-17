@@ -7,6 +7,7 @@ import store from './core/store';
 import App from './components/app';
 import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';
+import SignUp from './components/auth/signup';
 import Feature from './components/auth/feature';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
           <Route path="/" component={App}>
               <Route path="signin" component={SignIn} />
               <Route path="signout" component={SignOut} />
+              <Route path="signup" component={SignUp} />
               <Route path="feature" component={Feature} />
           </Route>
       </Router>
