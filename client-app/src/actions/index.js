@@ -19,9 +19,7 @@ export function signInUser({ email, password }) {
     return dispatch =>
         request
             .then((response) => {
-                localStorage.setItem('token', response.data.token);
-                dispatch({ type: SIGN_IN });
-                browserHistory.push('/feature');
+                signInAction(dispatch)(response);
             })
             .catch((error) => {
                 dispatch(authError('Bad login info'));
@@ -34,18 +32,18 @@ export function signOutUser() {
     return { type: SIGN_OUT };
 }
 
-export function signUpUser({ user, password }) {
+export function signUpUser({ email, password }) {
 
     const request = axios.post(`${ROOT_URL}/signup`, { email, password });
 
     return dispatch =>
         request
             .then((response) => {
-                dispatch({ type: SIGN_UP });
-                browserHistory.push('/signin');
+                signInAction(dispatch)(response)
             })
             .catch((error) => {
-                dispatch(authError('Bad login info'));
+                const response = error.response;
+                dispatch(authError(response.data.error));
             });
 }
 
@@ -55,3 +53,9 @@ export function authError(error) {
         payload: error
     }
 }
+
+const signInAction = (dispatch) => (response) => {
+    localStorage.setItem('token', response.data.token);
+    dispatch({ type: SIGN_IN });
+    browserHistory.push('/feature');
+};

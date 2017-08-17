@@ -27,7 +27,14 @@ class SignUp extends Component {
     };
 
     renderFieldAlert = (field) => {
-        const errorMessage = field.meta.touched && field.meta.error;
+        return this.renderAlert(field.meta.touched && field.meta.error);
+    };
+
+    renderFormAlert = () => {
+        return this.renderAlert(this.props.errorMessage);
+    };
+
+    renderAlert = (errorMessage) => {
         if(errorMessage) {
             return (
                 <div className="alert alert-danger">
@@ -61,6 +68,7 @@ class SignUp extends Component {
                     type="password"
                     component={this.renderField}
                 />
+                { this.renderFormAlert() }
                 <button action="submit" className="btn btn-primary">Sign Up</button>
             </form>
         )
