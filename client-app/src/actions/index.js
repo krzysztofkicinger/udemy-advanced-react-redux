@@ -1,4 +1,4 @@
-import { SIGN_IN, AUTHENTICATION_ERROR } from './types';
+import {SIGN_IN, AUTHENTICATION_ERROR, SIGN_OUT} from './types';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -27,6 +27,11 @@ export function signInUser({ email, password }) {
                 dispatch(authError('Bad login info'));
             });
 
+}
+
+export function signOutUser() {
+    localStorage.removeItem('token');
+    return { type: SIGN_OUT };
 }
 
 export function authError(error) {

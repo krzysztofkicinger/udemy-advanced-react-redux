@@ -47,7 +47,7 @@ class SignIn extends Component {
                     component={this.renderField}
                 />
                 <Field
-                    label="Email"
+                    label="Password"
                     name="password"
                     type="password"
                     component={this.renderField}
