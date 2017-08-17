@@ -15,7 +15,7 @@ module.exports = function(app) {
 
     app.get('/', requireAuth, function(request, response) {
         response.send({
-            hi: 'there'
+            message: 'Super secret code is ABC123'
         });
     });
 

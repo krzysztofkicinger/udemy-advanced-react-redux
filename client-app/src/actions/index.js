@@ -1,5 +1,6 @@
 import { SIGN_IN } from './types';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 const ROOT_URL = 'http://localhost:9300';
 
@@ -15,11 +16,19 @@ export function signInUser({ email, password }) {
     // If the request is bad...
     //  - Show an error to the user
 
-    return dispatch => {
-        // dispatch({
-        //     type: SIGN_IN,
-        //     payload: { email, password }
-        // });
-    }
+    return dispatch =>
+        request
+            .then((response) => {
+                console.log(response);
+                dispatch({
+                    type: SIGN_IN,
+                    payload: response.data.token
+                });
+                browserHistory.push('/feature');
+            })
+            .catch((error, response) => {
+                console.log("ERROR OCCURRED: ", error);
+                console.log("RESPONSE: ", response);
+            });
 
 }

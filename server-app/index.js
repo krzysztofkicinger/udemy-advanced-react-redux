@@ -6,10 +6,15 @@ const morgan = require('morgan');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // App Setup - Middleware (incoming request will be passed into them)
 app.use(morgan('combined'));    // Logging framework
 app.use(bodyParser.json({type: '*/*'}));        // Parses incoming requests to JSON
+app.use(cors({
+    origin: [ 'http://localhost:8080' ],
+    methods: [ 'GET', 'POST' ]
+}));        // Enables CORS
 
 // App Setup - Routing
 router(app);
