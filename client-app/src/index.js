@@ -9,11 +9,13 @@ import SignIn from './components/auth/signin';
 import SignOut from './components/auth/signout';
 import SignUp from './components/auth/signup';
 import Feature from './components/auth/feature';
+import Welcome from './components/welcome';
 
 ReactDOM.render(
   <Provider store={store}>
       <Router history={browserHistory}>
           <Route path="/" component={App}>
+              <IndexRoute component={Welcome} />
               <Route path="signin" component={SignIn} />
               <Route path="signout" component={SignOut} />
               <Route path="signup" component={SignUp} />
