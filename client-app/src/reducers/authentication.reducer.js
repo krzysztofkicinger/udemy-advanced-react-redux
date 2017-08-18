@@ -3,9 +3,9 @@ import { SIGN_IN, SIGN_OUT, AUTHENTICATION_ERROR, REHYDRATE } from "../actions/t
 export default function(state = {}, action) {
     switch(action.type) {
         case SIGN_IN:
-            return { ...state, authenticated: true };
+            return { ...state, message: '', authenticated: true };
         case SIGN_OUT:
-            return { ...state, authenticated: false };
+            return { ...state, message: '', authenticated: false };
         case AUTHENTICATION_ERROR:
             return { ...state, message: action.payload }
     }
