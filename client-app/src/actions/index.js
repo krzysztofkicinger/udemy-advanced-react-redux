@@ -48,7 +48,6 @@ export function signUpUser({ email, password }) {
 }
 
 export function fetchSecretMessage() {
-    console.log(localStorage.getItem('token'));
     const request = axios.get(`${ROOT_URL}`, {
         headers: {
             authorization: localStorage.getItem('token')
