@@ -1,4 +1,4 @@
-import {SIGN_IN, AUTHENTICATION_ERROR, SIGN_OUT, SIGN_UP} from './types';
+import {SIGN_IN, AUTHENTICATION_ERROR, SIGN_OUT, FETCH_MESSAGE } from './types';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
@@ -45,6 +45,28 @@ export function signUpUser({ email, password }) {
                 const response = error.response;
                 dispatch(authError(response.data.error));
             });
+}
+
+export function fetchSecretMessage() {
+    const request = axios.get(`${ROOT_URL}`, {
+        headers: {
+            authorization: localStorage.getItem('token')
+        }
+    });
+
+    return dispatch =>
+        request
+            .then((response) => {
+                dispatch({
+                    type: FETCH_MESSAGE,
+                    payload: response.data.message
+                })
+            })
+            .catch((error) => {
+                const response = error.response;
+                dispatch(authError(response.data.error));
+            });
+
 }
 
 export function authError(error) {

@@ -5,7 +5,6 @@ import { Link } from 'react-router';
 class Header extends Component {
 
     render = () => {
-        console.log(`Authenticated ${this.props.authenticated}`);
         return (
             <nav className="navbar navbar-light">
                 <ul className="nav navbar-nav">

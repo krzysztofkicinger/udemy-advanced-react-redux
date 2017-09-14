@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT, AUTHENTICATION_ERROR, REHYDRATE } from "../actions/types";
+import { SIGN_IN, SIGN_OUT, AUTHENTICATION_ERROR } from "../actions/types";
 
 export default function(state = {}, action) {
     switch(action.type) {
